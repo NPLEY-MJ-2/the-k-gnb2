@@ -99,6 +99,7 @@
     flex-direction: column;
     gap: 6px;
     width: 100%;
+    overflow: hidden;
   }
   .badge-top-row { display: flex; align-items: center; gap: 6px; width: 100%; }
   .badge-icon { position: relative; width: 32px; height: 32px; flex: none; }
@@ -234,17 +235,17 @@
     .badge-icon { width: 56px; height: 56px; order: 0; }
     .badge-icon img { width: 64.3%; height: 64.3%; top: 17.8%; left: 17.8%; }
     .badge-title { font-size: 18px; flex: none; order: 0; }
-    .badge-tags { font-size: 14px; flex: 1 1 0; overflow: visible; text-overflow: clip; order: 1; }
+    .badge-tags { font-size: 14px; flex: 1 1 0; min-width: 0; overflow: visible; text-overflow: clip; order: 1; }
     .more-button {
-      width: auto; height: auto; padding: 12px 12px 12px 16px; gap: 4px; border-radius: 999px; order: 2;
-      transition: padding .3s ease;
+      width: auto; height: auto; padding: 12px 12px 12px 16px; gap: 4px; border-radius: 999px; order: 2; flex: none;
+      transition: padding .3s ease, gap .3s ease;
     }
     .more-button .more-label {
       display: inline-block; font-size: 14px; font-weight: 700; white-space: nowrap;
       max-width: 120px; overflow: hidden; transition: max-width .3s ease, opacity .3s ease, margin .3s ease;
     }
     .badge-wrap.is-compact .badge-tags { overflow: hidden; }
-    .badge-wrap.is-compact .more-button { width: 36px; height: 36px; padding: 0; }
+    .badge-wrap.is-compact .more-button { width: 36px; height: 36px; padding: 0; gap: 0; }
     .badge-wrap.is-compact .more-button .more-label { max-width: 0; opacity: 0; margin: 0; }
 
     .popup { left: auto; right: 0; width: 340px; }
@@ -282,8 +283,8 @@
           </button>
         </div>
         <div class="badge-tags" id="badgeTags">
-          <span class="badge-tags-track">#복지혜택 · #이벤트혜택 · #회원복지 · #복지알림</span>
-          <span class="badge-tags-track dup" aria-hidden="true">#복지혜택 · #이벤트혜택 · #회원복지 · #복지알림</span>
+          <span class="badge-tags-track">#복지혜택 #이벤트혜택 #회원복지 #복지알림</span>
+          <span class="badge-tags-track dup" aria-hidden="true">#복지혜택 #이벤트혜택 #회원복지 #복지알림</span>
         </div>
       </div>
 
