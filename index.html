@@ -309,7 +309,7 @@
         </div>
         <div class="popup-category" id="popupCategory">복지혜택</div>
         <div class="chip-group" id="chipGroup"></div>
-        <button type="button" class="popup-cta">컨텐츠 보러가기</button>
+        <button type="button" class="popup-cta" id="popupCta">컨텐츠 보러가기</button>
         <div class="popup-pagination">
           <button type="button" class="nav-circle" id="pagePrev" aria-label="이전 페이지">
             <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.76719 10.7666L6.35052 8.34997C6.29497 8.29441 6.25608 8.23886 6.23385 8.1833C6.21163 8.12775 6.20052 8.06663 6.20052 7.99997C6.20052 7.9333 6.21163 7.87219 6.23385 7.81663C6.25608 7.76108 6.29497 7.70552 6.35052 7.64997L8.76719 5.2333C8.80052 5.19997 8.83663 5.17497 8.87552 5.1583C8.91441 5.14163 8.95608 5.1333 9.00052 5.1333C9.08941 5.1333 9.16719 5.16386 9.23385 5.22497C9.30052 5.28608 9.33385 5.36663 9.33385 5.46663V10.5333C9.33385 10.6333 9.30052 10.7139 9.23385 10.775C9.16719 10.8361 9.08941 10.8666 9.00052 10.8666C8.9783 10.8666 8.90052 10.8333 8.76719 10.7666Z" fill="currentColor"/></svg>
@@ -356,6 +356,7 @@
 
   const chipGroup = document.getElementById('chipGroup');
   const popupCategory = document.getElementById('popupCategory');
+  const popupCta = document.getElementById('popupCta');
   const pageNum = document.getElementById('pageNum');
   const pagePrev = document.getElementById('pagePrev');
   const pageNext = document.getElementById('pageNext');
@@ -384,13 +385,15 @@
     pagePrev.disabled = page <= 1;
     pageNext.disabled = page >= TOTAL_PAGES;
 
-    // Reveal each hashtag chip one after another ("착착착")
+    // Reveal each hashtag chip one after another ("착착착"), then the CTA
+    // button pops in last, right after the final hashtag.
     const chips = chipGroup.querySelectorAll('.chip');
+    const revealTargets = [...chips, popupCta];
     if (reduceMotion) {
-      gsap.set(chips, { opacity: 1, x: 0 });
+      gsap.set(revealTargets, { opacity: 1, x: 0 });
     } else {
-      gsap.set(chips, { opacity: 0, x: -12 });
-      gsap.to(chips, {
+      gsap.set(revealTargets, { opacity: 0, x: -12 });
+      gsap.to(revealTargets, {
         opacity: 1, x: 0,
         duration: 0.32,
         ease: 'power2.out',
